@@ -1,7 +1,0 @@
-LoD : create flag for blank periods to take several periods into account for LoD calculation
-report blank flag as 659 in suggest flags 
-
-CDCE : allow more control and visualization for CDCE correction
-
-Mass closure: 
-
