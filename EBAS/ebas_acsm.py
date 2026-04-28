@@ -2,6 +2,7 @@ import threddsclient
 import xarray as xr
 import pandas as pd
 from pathlib import Path
+import json
 #from igorwriter import IgorWave
 #from igorwriter import utils 
 
@@ -34,6 +35,16 @@ def get_station_name(ds, url):
     station = filename.split(".")[0]
     
     return station
+
+
+def get_station_metadata(ds,code) :
+    comment_str = ds.attrs["comment"]
+    comment_dict = json.loads(comment_str)
+    meta = comment_dict[code]
+    return meta
+
+
+
 
 station_data = {}
 
@@ -109,6 +120,8 @@ for url in filtered_urls:
             station_data[station] = []
 
         station_data[station].append(df)
+        
+        print(get_station_metadata(ds, "Station name"))
 
     except Exception as e:
         print(f"Erreur : {e}")
